@@ -1,0 +1,65 @@
+name: CI
+
+# Compile et teste les 26 solutions sur Windows (cible .NET Framework 4.8.1).
+# Les tests d'intégration (MariaDB / OpenLDAP) passent en « Inconclusive »
+# lorsque la base est absente : le workflow reste donc vert sans Docker.
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_NOLOGO: 'true'
+  DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true'
+
+jobs:
+  build-test:
+    name: Build & test (net481, Windows)
+    runs-on: windows-latest
+
+    steps:
+      - name: Récupération du code
+        uses: actions/checkout@v4
+
+      - name: Installation du SDK .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build + test des 26 solutions
+        shell: bash
+        run: |
+          echec=0
+          fails=""
+          for sln in */src/*.sln; do
+            echo "::group::$sln"
+            if dotnet test "$sln" -c Release --logger trx --results-directory artifacts/tests; then
+              echo "OK    $sln"
+            else
+              echo "::error::Échec de build/test : $sln"
+              echec=1
+              fails="$fails"$'\n'"  - $sln"
+            fi
+            echo "::endgroup::"
+          done
+          if [ "$echec" -ne 0 ]; then
+            echo "Solutions en échec :$fails"
+            exit 1
+          fi
+          echo "Les 26 solutions ont compilé et passé leurs tests."
+
+      - name: Publication des résultats de tests (.trx)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultats-tests
+          path: artifacts/tests/**/*.trx
+          if-no-files-found: ignore
