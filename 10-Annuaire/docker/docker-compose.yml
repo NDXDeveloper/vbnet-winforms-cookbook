@@ -1,0 +1,36 @@
+# =============================================================================
+#  Annuaire - Pile de demonstration OpenLDAP (projet 10)
+#  Copyright (c) 2026 Nicolas DEOUX <NDXDev@gmail.com> - Licence MIT.
+# =============================================================================
+
+name: annuaire
+
+services:
+  openldap:
+    image: osixia/openldap:1.5.0
+    container_name: annuaire-openldap
+    restart: unless-stopped
+    command: ["--copy-service"]
+    environment:
+      LDAP_ORGANISATION:   "${LDAP_ORGANISATION:-Exemple}"
+      LDAP_DOMAIN:         "${LDAP_DOMAIN:-exemple.test}"
+      LDAP_ADMIN_PASSWORD: "${LDAP_ADMIN_PASSWORD:-admin_pwd}"
+      LDAP_TLS:            "false"
+    ports:
+      - "${LDAP_HOST_PORT:-389}:389"
+    volumes:
+      - annuaire-data:/var/lib/ldap
+      - annuaire-config:/etc/ldap/slapd.d
+      - ./bootstrap:/container/service/slapd/assets/config/bootstrap/ldif/custom:ro
+    healthcheck:
+      test: ["CMD-SHELL", "ldapsearch -x -H ldap://localhost:389 -b dc=exemple,dc=test -D cn=admin,dc=exemple,dc=test -w admin_pwd uid=alice > /dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 40s
+
+volumes:
+  annuaire-data:
+    name: annuaire-data
+  annuaire-config:
+    name: annuaire-config

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Instance unique (Mutex) + communication inter-processus (tube nomme). MIT - Nicolas DEOUX. -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <RootNamespace>NDX.InstanceUnique</RootNamespace>
+    <AssemblyName>NDX.InstanceUnique.Core</AssemblyName>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+    <OptionCompare>Binary</OptionCompare>
+    <NeutralLanguage>fr-FR</NeutralLanguage>
+    <Authors>Nicolas DEOUX</Authors>
+    <Copyright>Copyright (c) 2026 Nicolas DEOUX &lt;NDXDev@gmail.com&gt;</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+
+</Project>

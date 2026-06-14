@@ -1,0 +1,25 @@
+# ============================================================================
+#  Annuaire - Donnees initiales (projet 10) : ou=users + comptes de demonstration
+#  Copyright (c) 2026 Nicolas DEOUX <NDXDev@gmail.com> - Licence MIT.
+#  Mots de passe en clair : DEMONSTRATION uniquement.
+# ============================================================================
+
+dn: ou=users,dc=exemple,dc=test
+objectClass: organizationalUnit
+ou: users
+
+dn: uid=alice,ou=users,dc=exemple,dc=test
+objectClass: inetOrgPerson
+uid: alice
+cn: Alice Martin
+sn: Martin
+mail: alice@exemple.test
+userPassword: alice_pwd
+
+dn: uid=bob,ou=users,dc=exemple,dc=test
+objectClass: inetOrgPerson
+uid: bob
+cn: Bob Durand
+sn: Durand
+mail: bob@exemple.test
+userPassword: bob_pwd
