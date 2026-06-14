@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Bibliotheque de techniques de programmation .NET (boite a outils).
+    Format SDK-style ciblant .NET Framework 4.8.1 (s'ouvre dans Visual
+    Studio 2022, se compile aussi bien avec MSBuild qu'avec `dotnet build`).
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <RootNamespace>BoiteAOutils</RootNamespace>
+    <AssemblyName>BoiteAOutils.Core</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+    <OptionCompare>Binary</OptionCompare>
+    <NeutralLanguage>fr-FR</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Connecteur ADO.NET MySQL/MariaDB (compatible). -->
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Assemblies du .NET Framework non couvertes par UseWindowsForms. -->
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+</Project>

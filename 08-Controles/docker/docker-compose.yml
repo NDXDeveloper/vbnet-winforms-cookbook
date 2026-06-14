@@ -1,0 +1,32 @@
+# =============================================================================
+#  Preferences - Pile de demonstration MariaDB 12.3 LTS (projet 08)
+#  Copyright (c) 2026 Nicolas DEOUX <NDXDev@gmail.com> - Licence MIT.
+# =============================================================================
+
+name: preferences
+
+services:
+  mariadb:
+    image: mariadb:12.3
+    container_name: preferences-mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD:-root_demo_pwd}"
+      MARIADB_DATABASE:      "${MARIADB_DATABASE:-preferences}"
+      MARIADB_USER:          "${MARIADB_APP_USER:-preferences_app}"
+      MARIADB_PASSWORD:      "${MARIADB_APP_PASSWORD:-preferences_pwd}"
+    ports:
+      - "${MARIADB_HOST_PORT:-3314}:3306"
+    volumes:
+      - preferences-data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+volumes:
+  preferences-data:
+    name: preferences-data

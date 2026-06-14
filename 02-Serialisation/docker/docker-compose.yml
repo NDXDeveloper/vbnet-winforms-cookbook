@@ -1,0 +1,52 @@
+# =============================================================================
+#  Coffre - Pile de demonstration MariaDB 12.3 LTS
+# -----------------------------------------------------------------------------
+#  Projet 02 : persistance d'objets serialises (coffre de documents).
+#  Copyright (c) 2026 Nicolas DEOUX <NDXDev@gmail.com> - Licence MIT.
+#
+#  Demarrage :   docker compose up -d --wait
+#  Arret      :   docker compose down            (conserve les donnees)
+#  Reset      :   docker compose down -v          (supprime le volume = repart a zero)
+#
+#  Au premier demarrage (volume vide), MariaDB execute, dans l'ordre alphabetique,
+#  les scripts *.sql montes dans /docker-entrypoint-initdb.d (schema puis donnees).
+# =============================================================================
+
+# Nom de projet Compose explicite : isole cette pile des autres projets de la
+# serie (sans cela, le nom du dossier "docker" servirait de nom de projet et
+# provoquerait des collisions entre projets).
+name: coffre
+
+services:
+  mariadb:
+    image: mariadb:12.3
+    container_name: coffre-mariadb
+    restart: unless-stopped
+
+    # L'image cree la base et le compte applicatif. Le compte est cree via
+    # "CREATE USER ... IDENTIFIED BY ...", qui sous MariaDB utilise le plugin
+    # mysql_native_password : compatible avec le connecteur MySql.Data (.NET).
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD:-root_demo_pwd}"
+      MARIADB_DATABASE:      "${MARIADB_DATABASE:-coffre}"
+      MARIADB_USER:          "${MARIADB_APP_USER:-coffre_app}"
+      MARIADB_PASSWORD:      "${MARIADB_APP_PASSWORD:-coffre_pwd}"
+
+    # Port hote 3308 -> port conteneur 3306.
+    ports:
+      - "${MARIADB_HOST_PORT:-3308}:3306"
+
+    volumes:
+      - coffre-data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d:ro
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+volumes:
+  coffre-data:
+    name: coffre-data

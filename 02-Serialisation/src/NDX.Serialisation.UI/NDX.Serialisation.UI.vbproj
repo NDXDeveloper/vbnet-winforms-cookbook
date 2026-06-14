@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Galerie WinForms : consomme NDX.Serialisation.Core. Format SDK-style,
+    .NET Framework 4.8.1. On fournit notre propre Sub Main.
+    Copyright (c) 2026 Nicolas DEOUX <NDXDev@gmail.com> - Licence MIT.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <RootNamespace>NDX.Serialisation.UI</RootNamespace>
+    <AssemblyName>NDX.Serialisation.UI</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <StartupObject>NDX.Serialisation.UI.Program</StartupObject>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+    <OptionCompare>Binary</OptionCompare>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NDX.Serialisation.Core\NDX.Serialisation.Core.vbproj" />
+  </ItemGroup>
+
+</Project>

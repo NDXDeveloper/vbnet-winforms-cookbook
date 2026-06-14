@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Galerie WinForms : consomme la bibliotheque BoiteAOutils.Core.
+    Format SDK-style, .NET Framework 4.8.1. On fournit notre propre Sub Main
+    (MyType = WindowsFormsWithCustomSubMain) pour maitriser l'initialisation.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <RootNamespace>BoiteAOutils.UI</RootNamespace>
+    <AssemblyName>BoiteAOutils.UI</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <StartupObject>BoiteAOutils.UI.Program</StartupObject>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+    <OptionCompare>Binary</OptionCompare>
+    <!-- Genere automatiquement les redirections de liaison (MySql.Data + dependances). -->
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoiteAOutils.Core\BoiteAOutils.Core.vbproj" />
+  </ItemGroup>
+
+</Project>

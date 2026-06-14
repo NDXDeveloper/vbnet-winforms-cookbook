@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Bibliotheque de serialisation (XML, contrat XML, binaire sur, JSON) et de
+    persistance d'objets serialises. Format SDK-style, .NET Framework 4.8.1.
+    Copyright (c) 2026 Nicolas DEOUX <NDXDev@gmail.com> - Licence MIT.
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <RootNamespace>NDX.Serialisation</RootNamespace>
+    <AssemblyName>NDX.Serialisation.Core</AssemblyName>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+    <OptionCompare>Binary</OptionCompare>
+    <NeutralLanguage>fr-FR</NeutralLanguage>
+    <Authors>Nicolas DEOUX</Authors>
+    <Company>Nicolas DEOUX</Company>
+    <Copyright>Copyright (c) 2026 Nicolas DEOUX &lt;NDXDev@gmail.com&gt;</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Connecteur ADO.NET MySQL/MariaDB. -->
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Assemblies du .NET Framework utilisees par la bibliotheque. -->
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+
+</Project>
