@@ -1,0 +1,24 @@
+# ============================================================
+#  Recueil VB.NET — règles Git pour le traitement des fichiers
+# ============================================================
+# État actuel du dépôt : tout le texte est en LF, sans BOM.
+# On normalise donc en LF (dans le dépôt ET la copie de travail) :
+# Git, GitHub et Visual Studio 2022 gèrent le LF sans problème,
+# et le .editorconfig maintient ce choix lors des éditions.
+
+# Détection automatique + normalisation en LF de tout fichier texte
+* text=auto eol=lf
+
+# Binaires : jamais de normalisation des fins de ligne (anti-corruption)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.bmp  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.snk  binary
+*.dll  binary
+*.exe  binary
+*.pdb  binary

@@ -1,0 +1,23 @@
+# ============================================================
+#  Recueil VB.NET — conventions d'édition
+# ============================================================
+# Lu nativement par Visual Studio 2022, VS Code, Rider, etc.
+# N'altère PAS les fichiers existants : guide l'éditeur lors
+# des prochaines saisies (et de « Format Document »).
+root = true
+
+[*]
+charset = utf-8                  # UTF-8 sans BOM (état actuel des fichiers)
+end_of_line = lf                 # LF partout (cohérent avec .gitattributes)
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# YAML / JSON : indentation à 2 espaces (convention de ces formats)
+[*.{yml,yaml,json}]
+indent_size = 2
+
+# Markdown : 2 espaces en fin de ligne = saut de ligne forcé → ne pas les rogner
+[*.md]
+trim_trailing_whitespace = false
