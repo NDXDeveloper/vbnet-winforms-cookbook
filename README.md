@@ -1,10 +1,10 @@
 # Recueil VB.NET — 26 techniques du développement desktop Windows
 
-![VB.NET](https://img.shields.io/badge/langage-VB.NET-512BD4)
-![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8.1-512BD4)
-![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91)
-![MariaDB](https://img.shields.io/badge/MariaDB-12.3%20LTS-003545)
-![Tests](https://img.shields.io/badge/tests-286%20MSTest-2ea44f)
+![VB.NET](https://img.shields.io/badge/langage-VB.NET-512BD4)  
+![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8.1-512BD4)  
+![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91)  
+![MariaDB](https://img.shields.io/badge/MariaDB-12.3%20LTS-003545)  
+![Tests](https://img.shields.io/badge/tests-286%20MSTest-2ea44f)  
 ![Licence](https://img.shields.io/badge/licence-MIT-green)
 
 Recueil pédagogique de **26 projets VB.NET autonomes** (.NET Framework 4.8.1, WinForms) —
