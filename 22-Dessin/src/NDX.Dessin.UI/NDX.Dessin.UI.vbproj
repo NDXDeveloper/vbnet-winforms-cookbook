@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Galerie WinForms. Copyright (c) 2026 Nicolas DEOUX <NDXDev@gmail.com> - MIT. -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <RootNamespace>NDX.Dessin.UI</RootNamespace>
+    <AssemblyName>NDX.Dessin.UI</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <StartupObject>NDX.Dessin.UI.Program</StartupObject>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NDX.Dessin.Core\NDX.Dessin.Core.vbproj" />
+  </ItemGroup>
+
+</Project>
